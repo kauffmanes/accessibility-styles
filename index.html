@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Accessibility Enforcement</title>
+	<style>
+
+	body {
+		background: #ddd;
+	}
+
+	img:not([alt]):not([class="no-acc"]), img[alt=""]:not([class="no-acc"]) {
+		border: solid 5px red;
+	}
+
+	img:not([alt]):not([class="no-acc"]):before, img[alt=""]:not([class="no-acc"]):before {
+		content: "Missing alt tag!";
+	}
+
+	img:before {
+		content: "test";
+	}
+
+	</style>
+</head>
+<body>
+
+	<div>
+		<p>No alt tag on image</p>
+		<img src="./kitty.png">
+	</div>
+
+	<div>
+		<p>Has alt tag on image, but it's empty</p>
+		<img src="./kitty.png" alt="">
+	</div>
+
+	<div>
+		<p>Has no alt tag but has ignore accessibility class</p>
+		<img src="./kitty.png" alt="" class="no-acc">
+	</div>
+
+	<div>
+		<p>Has empty alt tag with ignore accessibility class</p>
+		<img src="./kitty.png" alt="" class="no-acc">
+	</div>
+
+	<div>
+		<p>Image with alt text</p>
+		<img src="./kitty.png" alt="this is an image">
+	</div>
+
+</body>
+</html>
